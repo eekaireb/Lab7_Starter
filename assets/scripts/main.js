@@ -25,8 +25,8 @@ const router = new Router(function () {
    * This will only be two single lines
    * If you did this right, you should see the recipe cards just like last lab
    */
-  document.querySelector('section.section--recipe-cards').classList.add("shown");;
-  document.querySelector('section.section--recipe-expand').classList.remove("shown");
+  document.querySelector('.section--recipe-cards').classList.add("shown");;
+  document.querySelector('.section--recipe-expand').classList.remove("shown");
 });
 
 window.addEventListener('DOMContentLoaded', init);
@@ -210,7 +210,7 @@ function bindPopstate() {
    * creating an infinite loop
    */
     window.onpopstate = function(event){
-      console.log(event);
+      console.log(event.state);
      if(event.state)
      {
         router.navigate(event.state['state'], true);
