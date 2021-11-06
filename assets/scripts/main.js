@@ -25,7 +25,7 @@ const router = new Router(function () {
    * This will only be two single lines
    * If you did this right, you should see the recipe cards just like last lab
    */
-  document.querySelector('.section--recipe-cards').classList.add("shown");;
+  document.querySelector('.section--recipe-cards').classList.add("shown");
   document.querySelector('.section--recipe-expand').classList.remove("shown");
 });
 
@@ -116,9 +116,10 @@ function createRecipeCards() {
       document.querySelector('recipe-expand').data = recipeData[recipes[i]];
     });
     bindRecipeCard(recipeCard, page);
-
+  
     document.querySelector('.recipe-cards--wrapper').appendChild(recipeCard);
-}
+  }
+
 
   /**
    * TODO - Part 1 - Step 3
@@ -184,7 +185,7 @@ function bindEscKey() {
    * page. This will let us go back to the home page from the detailed page.
    */
    document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
+    if (event.key == "Escape") {
       router.navigate('home', false);
     }
   });
@@ -209,16 +210,13 @@ function bindPopstate() {
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
-    window.onpopstate = function(event){
-      console.log(event.state);
-     if(event.state)
-     {
-        router.navigate(event.state['state'], true);
-     }
-     else
-     {
-        router.navigate('home', true);
-     }
-  }
+   window.addEventListener('popstate', (event) => {
+    console.log(event);
+    if (event['state']){
+      router.navigate(event['state']['page'], true);
+    }else{
+      router.navigate('home', true);
+    }
+  });
   
 }
